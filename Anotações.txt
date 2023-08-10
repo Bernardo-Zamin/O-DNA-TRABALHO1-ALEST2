@@ -1,0 +1,15 @@
+Analisar e tentar mais de uma solução, para desenvolvimento do algoritmo.
+
+Se duas letras forem diferentes , jogar para o fim o resultado e "apagar" os valores recem testados.
+
+------------------------------------------
+ para testar a complexidade se nao saber , utilizar um grafico , o eixo x é o n e o eixo y é os resultados.
+------------------------------------------
+
+dificilmente o algoritmo do trabalho será exponencial. "Aposto pra vcs que o primeiro algoritmo sera polinomial". Se testarmos n o tamanho da cadeia e contar os resultados "contando loop", será o polinomial
+
+
+----------------------------------------
+
+
+
