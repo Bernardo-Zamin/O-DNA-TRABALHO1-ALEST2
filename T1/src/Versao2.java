@@ -1,6 +1,6 @@
-public class App {
+public class Versao2 {
     public static void main(String[] args) throws Exception {
-
+        
         String dna = "DANNDANDANDANADNDDDAN";
 
         StringBuilder sb = new StringBuilder(dna);
