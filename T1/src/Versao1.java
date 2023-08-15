@@ -9,63 +9,76 @@ import java.util.Scanner;
 
 public class Versao1 {
     public static void main(String[] args) throws Exception {
-        LinkedList<Character> lista = new LinkedList<>();
-        LinkedList<String> listaStrg = new LinkedList<>();
+        LinkedList<Character> lista;
+        LinkedList<String> listaDna = new LinkedList<>();
+
         // String dna = "DANA";
+
         boolean achaDif;
+
         // for (int i = 0; i < dna.length(); i++) {
         // lista.add(dna.charAt(i));
         // }
         // System.out.println(lista);
+
         System.out.println("----------------------------");
 
         Path path = Paths.get("teste.txt");
         String aux[];
 
-        try (BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset())) {
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                listaStrg.add(linha);
+        try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_16)) {
+            String linha = reader.readLine();
+            while (linha != null) {
+                aux = linha.split("\n");
+                listaDna.add(linha);
+                linha = reader.readLine();
 
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        String[] linesArray = listaStrg.toArray(new String[0]);
-       
-        char[] charArray = new char[linesArray.length];
-        
-        for (int i = 0; i < linesArray.length; i++) {
-            charArray[i] = linesArray[0].charAt(2);
-        }
-        
-        for (int i = 0; i < charArray.length; i++) {
-            lista.add(charArray[i]);
-        }
 
+        System.out.println("Lista de DNAS: " + listaDna);
+        System.out.println();
 
-        do {
-            achaDif = false;
-            for (int i = 0; i < lista.size() - 1; i++) {
-                int j = i + 1;
-                if (precisaMudar(lista.get(i), lista.get(j))) {
-                    char novo = letraNoFim(lista.get(i), lista.get(j));
-                    lista.remove(i);
-                    lista.remove(i);
-                    lista.add(i, novo);
-                    achaDif = true;
-                    System.out.println(lista);
-                    System.out.println("---------------");
-                    break; // se precisar mudar os characteres ele volta pro inicio
-                }
+        String[] dnas = new String[listaDna.size()];
 
-                // System.out.println(lista);
-                // System.out.println("---------------");
+        for (int i = 0; i < dnas.length; i++) {
+            dnas[i] = listaDna.get(i);
+            lista = new LinkedList<>();
 
+            for (int j = 0; j < dnas[i].length(); j++) {
+                lista.add(dnas[i].charAt(j));
             }
-        } while (achaDif);
 
-        System.out.println(lista);
+            System.out.println("===============================");
+            System.out.println("DNA[" + i + "]: " + dnas[i]);
+            System.out.println("===============================");
+
+            do {
+                achaDif = false;
+                for (int l = 0; l < lista.size() - 1; l++) {
+                    int k = l + 1;
+                    if (precisaMudar(lista.get(l), lista.get(k))) {
+                        char novo = letraNoFim(lista.get(l), lista.get(k));
+                        lista.remove(l);
+                        lista.remove(l);
+                        lista.add(l, novo);
+                        achaDif = true;
+                        System.out.println(lista);
+                        System.out.println("---------------");
+                        break; // se precisar mudar os characteres ele volta pro inicio
+                    }
+
+                    // System.out.println(lista);
+                    // System.out.println("---------------");
+
+                }
+            } while (achaDif);
+
+            System.out.println(lista);
+
+        }
 
     }
 
