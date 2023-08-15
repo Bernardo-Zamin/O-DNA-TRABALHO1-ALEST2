@@ -1,16 +1,48 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Versao1 {
     public static void main(String[] args) throws Exception {
-        // Create by Benjamin Mattar
         LinkedList<Character> lista = new LinkedList<>();
-        String dna = "DANA";
+        LinkedList<String> listaStrg = new LinkedList<>();
+        // String dna = "DANA";
         boolean achaDif;
-        for (int i = 0; i < dna.length(); i++) {
-            lista.add(dna.charAt(i));
-        }
-        System.out.println(lista);
+        // for (int i = 0; i < dna.length(); i++) {
+        // lista.add(dna.charAt(i));
+        // }
+        // System.out.println(lista);
         System.out.println("----------------------------");
+
+        Path path = Paths.get("teste.txt");
+        String aux[];
+
+        try (BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset())) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                listaStrg.add(linha);
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        String[] linesArray = listaStrg.toArray(new String[0]);
+       
+        char[] charArray = new char[linesArray.length];
+        
+        for (int i = 0; i < linesArray.length; i++) {
+            charArray[i] = linesArray[0].charAt(2);
+        }
+        
+        for (int i = 0; i < charArray.length; i++) {
+            lista.add(charArray[i]);
+        }
+
 
         do {
             achaDif = false;
