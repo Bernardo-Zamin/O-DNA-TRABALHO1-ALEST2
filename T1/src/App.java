@@ -1,33 +1,17 @@
-import java.io.BufferedReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 
-public class Versao1 {
+public class App {
     public static void main(String[] args) throws Exception {
         LinkedList<Character> lista;
         LinkedList<String> listaDna = new LinkedList<>();
+        Characters chars = new Characters();
+        LeituraArquivo leArq = new LeituraArquivo("teste.txt");
 
         boolean achaDif;
 
         System.out.println("----------------------------\n");
 
-        Path path = Paths.get("teste.txt");
-        String aux[];
-
-        try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_16)) {
-            String linha = reader.readLine();
-            while (linha != null) {
-                aux = linha.split("\n");
-                listaDna.add(linha);
-                linha = reader.readLine();
-
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        listaDna = leArq.carregaDados();
 
         System.out.println("Lista de DNAS: " + listaDna);
         System.out.println();
@@ -50,8 +34,8 @@ public class Versao1 {
                 achaDif = false;
                 for (int l = 0; l < lista.size() - 1; l++) {
                     int k = l + 1;
-                    if (precisaMudar(lista.get(l), lista.get(k))) {
-                        char novo = letraNoFim(lista.get(l), lista.get(k));
+                    if (chars.precisaMudar(lista.get(l), lista.get(k))) {
+                        char novo = chars.letraNoFim(lista.get(l), lista.get(k));
                         lista.remove(l);
                         lista.remove(l);
                         lista.addLast(novo);
@@ -69,25 +53,4 @@ public class Versao1 {
 
     }
 
-    public static char letraNoFim(char n1, char n2) {
-        if (n1 != 'D' && n2 != 'D') {
-            return 'D';
-        }
-        if (n1 != 'N' && n2 != 'N') {
-            return 'N';
-        }
-        if (n1 != 'A' && n2 != 'A') {
-            return 'A';
-        }
-        return ' ';
-    }
-
-    public static boolean precisaMudar(char n1, char n2) {
-        if ((n1 == 'D' && n2 == 'N') || (n1 == 'N' && n2 == 'D') ||
-                (n1 == 'D' && n2 == 'A') || (n1 == 'A' && n2 == 'D') ||
-                (n1 == 'A' && n2 == 'N') || (n1 == 'N' && n2 == 'A')) {
-            return true;
-        }
-        return false;
-    }
 }
