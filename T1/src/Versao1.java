@@ -1,27 +1,18 @@
 import java.io.BufferedReader;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class Versao1 {
     public static void main(String[] args) throws Exception {
         LinkedList<Character> lista;
         LinkedList<String> listaDna = new LinkedList<>();
 
-        // String dna = "DANA";
-
         boolean achaDif;
 
-        // for (int i = 0; i < dna.length(); i++) {
-        // lista.add(dna.charAt(i));
-        // }
-        // System.out.println(lista);
-
-        System.out.println("----------------------------");
+        System.out.println("----------------------------\n");
 
         Path path = Paths.get("teste.txt");
         String aux[];
@@ -51,9 +42,9 @@ public class Versao1 {
                 lista.add(dnas[i].charAt(j));
             }
 
-            System.out.println("===============================");
-            System.out.println("DNA[" + i + "]: " + dnas[i]);
-            System.out.println("===============================");
+            System.out.println("\n=========================================================");
+            System.out.println("            DNA[" + i + "]: " + dnas[i]);
+            System.out.println("=========================================================\n");
 
             do {
                 achaDif = false;
@@ -63,20 +54,16 @@ public class Versao1 {
                         char novo = letraNoFim(lista.get(l), lista.get(k));
                         lista.remove(l);
                         lista.remove(l);
-                        lista.add(l, novo);
+                        lista.addLast(novo);
+
                         achaDif = true;
                         System.out.println(lista);
                         System.out.println("---------------");
                         break; // se precisar mudar os characteres ele volta pro inicio
                     }
 
-                    // System.out.println(lista);
-                    // System.out.println("---------------");
-
                 }
             } while (achaDif);
-
-            System.out.println(lista);
 
         }
 
