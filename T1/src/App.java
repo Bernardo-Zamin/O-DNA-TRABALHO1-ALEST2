@@ -28,6 +28,7 @@ public class App {
 
             System.out.println("\n=========================================================");
             System.out.println("            DNA[" + i + "]: " + dnas[i]);
+            System.out.println("            TAMANHO INICIAL: "+ lista.size()+"               ");
             System.out.println("=========================================================\n");
 
             do {
@@ -48,7 +49,7 @@ public class App {
 
                 }
             } while (achaDif);
-
+            System.out.println("TAMANHO FINAL: "+ lista.size());
         }
 
     }
