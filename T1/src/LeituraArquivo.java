@@ -3,15 +3,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.LinkedList;
 
 public class LeituraArquivo {
 
-    private LinkedList<String> dnas;
+    
     private String nArq;
 
     public LeituraArquivo(String nomeArquivo) {
-        dnas = new LinkedList<>();
         this.nArq = nomeArquivo;
 
     }
@@ -24,7 +22,7 @@ public class LeituraArquivo {
     // Método também adaptado para classe e projeto atual
     // Ajuda na organização do código
 
-    public LinkedList<String> carregaDados() {
+    public String carregaDados() {
         String currDir = Paths.get("").toAbsolutePath().toString();
         // Monta o nome do arquivo
         String nomeCompleto = currDir + "/" + nArq;
@@ -33,19 +31,13 @@ public class LeituraArquivo {
         Path path = Paths.get(nomeCompleto);
 
         String linha = "";
-        String[] aux;
-
-        try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_16)) {
+    
+        try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             linha = reader.readLine();
-            while (linha != null) {
-                aux = linha.split("\n");
-                dnas.add(linha);
-                linha = reader.readLine();
 
-            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return dnas;
+        return linha;
     }
 }

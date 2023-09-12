@@ -1,56 +1,42 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        LinkedList<Character> lista;
-        LinkedList<String> listaDna = new LinkedList<>();
+        ArrayList<Character> lista = new ArrayList<>();
         Characters chars = new Characters();
-        LeituraArquivo leArq = new LeituraArquivo("teste.txt");
+        LeituraArquivo leArq = new LeituraArquivo("caso100k.txt");
 
-        boolean achaDif;
+        String listaDna = leArq.carregaDados();
 
-        System.out.println("----------------------------\n");
+        for (int j = 0; j < listaDna.length(); j++) {
+            lista.add(listaDna.charAt(j));
+        }
 
-        listaDna = leArq.carregaDados();
+        System.out.println("\n=========================================================");
+        System.out.println("            TAMANHO INICIAL: " + lista.size() + "               ");
+        System.out.println("=========================================================\n");
 
-        System.out.println("Lista de DNAS: " + listaDna);
-        System.out.println();
+        int l = 0;
+        int k = l + 1;
+        char novo;
 
-        String[] dnas = new String[listaDna.size()];
+        for (l = 0; l < lista.size() - 1; l++) {
+            k = l + 1;
+            if (chars.precisaMudar(lista.get(l), lista.get(k))) {
+                novo = chars.letraNoFim(lista.get(l), lista.get(k));
+                lista.remove(l);
+                lista.remove(l);
+                lista.add(novo);
 
-        for (int i = 0; i < dnas.length; i++) {
-            dnas[i] = listaDna.get(i);
-            lista = new LinkedList<>();
+                l = -1;
+                k = 0;
 
-            for (int j = 0; j < dnas[i].length(); j++) {
-                lista.add(dnas[i].charAt(j));
             }
 
-            System.out.println("\n=========================================================");
-            System.out.println("            DNA[" + i + "]: " + dnas[i]);
-            System.out.println("            TAMANHO INICIAL: "+ lista.size()+"               ");
-            System.out.println("=========================================================\n");
-
-            do {
-                achaDif = false;
-                for (int l = 0; l < lista.size() - 1; l++) {
-                    int k = l + 1;
-                    if (chars.precisaMudar(lista.get(l), lista.get(k))) {
-                        char novo = chars.letraNoFim(lista.get(l), lista.get(k));
-                        lista.remove(l);
-                        lista.remove(l);
-                        lista.addLast(novo);
-
-                        achaDif = true;
-                        System.out.println(lista);
-                        System.out.println("---------------");
-                        break; // se precisar mudar os characteres ele volta pro inicio
-                    }
-
-                }
-            } while (achaDif);
-            System.out.println("TAMANHO FINAL: "+ lista.size());
         }
+
+        System.out.println("TAMANHO FINAL: " + lista.size());
+        System.out.println(lista);
 
     }
 
