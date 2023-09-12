@@ -4,7 +4,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         ArrayList<Character> lista = new ArrayList<>();
         Characters chars = new Characters();
-        LeituraArquivo leArq = new LeituraArquivo("caso100k.txt");
+        LeituraArquivo leArq = new LeituraArquivo("caso10k.txt");
+
+
 
         String listaDna = leArq.carregaDados();
 
@@ -19,6 +21,8 @@ public class App {
         int l = 0;
         int k = l + 1;
         char novo;
+        
+        
 
         for (l = 0; l < lista.size() - 1; l++) {
             k = l + 1;

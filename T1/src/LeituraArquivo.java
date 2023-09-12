@@ -5,15 +5,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class LeituraArquivo {
-
-    
     private String nArq;
 
     public LeituraArquivo(String nomeArquivo) {
         this.nArq = nomeArquivo;
 
     }
-
     // Método base foi fornecido por Bernardo Copstein para realizar trabalho de
     // Fundamentos de Desenvolvimento de Software:
     // https://github.com/TP-BCopsteinAssignments/ExercicioPrimeirosPadroes/blob/main/src/Consultas.java
@@ -31,11 +28,13 @@ public class LeituraArquivo {
         Path path = Paths.get(nomeCompleto);
 
         String linha = "";
-    
+
         try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+
             linha = reader.readLine();
 
         } catch (Exception e) {
+
             System.out.println(e.getMessage());
         }
         return linha;
